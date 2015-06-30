@@ -9,9 +9,6 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         validate: { notEmpty: {msg: "-> Falta Nombre"}} 
       },
-      perfil : {
-        type: DataTypes.INTEGER  
-      },
        activo : {
         type: DataTypes.BOOLEAN
       },

@@ -19,7 +19,14 @@ function getQuizes(res){
 function getJugadores(res){
 	
 	
-	models.Jugadores.findAll().then(function(jugadores) {
+	models.Jugadores.findAll({
+		include :[
+			{model:models.Saldos},
+			{model:models.Perfiles}
+		]
+		
+	})
+		.then(function(jugadores) {
        if (jugadores) {
          res.json(jugadores); 
        }

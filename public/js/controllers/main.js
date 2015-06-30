@@ -9,17 +9,32 @@ angular.module('quizController', [])
             field: "usu",
             title: "Login",
             width: "120px"
-        },{
+        }
+        ,{
             field: "Nombre",
             title: "Name",
             width: "120px"
-        }];
+        }
+        ,{
+            field: "Saldo.saldo",
+            title: "Saldo",
+            width: "120px"
+        }
+        ,{
+            field: "Perfile.descripcion",
+            title: "Perfil",
+            width: "120px"
+        }
+        ];
 
 
 	angular.element(document).ready(function () {
 	// GET =====================================================================
 	// when landing on the page, get all todos and show them
 	// use the service to get all the todos
+	
+	
+	
 	Quizes.getQuizes()
 		.success(function(data) {
 		$scope.quizes = data;
