@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define(
-  	'Perfiles',
+  	'Tipo_Estado',
     {
       descripcion : {
         type: DataTypes.STRING  

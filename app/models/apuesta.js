@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define(
-  	'Perfiles',
+  	'Apuestas',
     {
-      descripcion : {
-        type: DataTypes.STRING  
+      nombre : {
+        type: DataTypes.INTEGER  
       }
     }
   );
