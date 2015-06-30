@@ -26,6 +26,29 @@ angular.module('quizController', [])
             width: "120px"
         }
         ];
+        
+        
+	 $scope.gridColumnsApuestas =  [{
+		    field: "nombre",
+		    title: "Nombre",
+		    width: "120px"
+		}
+		 ,{
+            field: "apostado",
+            title: "Apostado",
+            width: "120px"
+        }
+        ,{
+            field: "ganado",
+            title: "Ganado",
+            width: "120px"
+        }
+        ,{
+            field: "Tipo_Estado.descripcion",
+            title: "Perfil",
+            width: "120px"
+        }
+        ];
 
 
 	angular.element(document).ready(function () {
@@ -59,6 +82,13 @@ angular.module('quizController', [])
 		.success(function(data) {
 		console.log(data);
 		$scope.jugadores = data;
+	
+	});
+	
+	Quizes.getApuestas()
+		.success(function(data) {
+		console.log(data);
+		$scope.apuestas = data;
 	
 	});
 	

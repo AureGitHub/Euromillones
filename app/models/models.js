@@ -15,6 +15,7 @@ var Perfiles = sequelize.import(path.join(__dirname,'perfiles'));
 var Tipo_Estado = sequelize.import(path.join(__dirname,'tipo_estado'));
 var Tipo_Accion = sequelize.import(path.join(__dirname,'tipo_accion'));
 var Tipo_Movimiento = sequelize.import(path.join(__dirname,'tipo_movimiento'));
+var Apuestas = sequelize.import(path.join(__dirname,'apuestas'));
 
 //REL JUGADORES x SALDOS
 Saldos.belongsTo(Jugadores);
@@ -24,7 +25,8 @@ Jugadores.hasOne(Saldos);
 Jugadores.belongsTo(Perfiles);
 Perfiles.hasMany(Jugadores);
 
-
+//REL APUESTAS x ESTADO
+Apuestas.belongsTo(Tipo_Estado,{foreignKey: 'IdEstado'});
 
 exports.Quiz = Quiz; 
 exports.Jugadores = Jugadores; 
@@ -34,6 +36,8 @@ exports.Perfiles = Perfiles;
 exports.Tipo_Estado = Tipo_Estado; 
 exports.Tipo_Accion = Tipo_Accion; 
 exports.Tipo_Movimiento = Tipo_Movimiento; 
+
+exports.Apuestas=Apuestas;
 
 
 // sequelize.sync() inicializa tabla de preguntas en DB
@@ -104,9 +108,6 @@ sequelize.sync().then(function() {
             })
           }
         });
-              
-              
-              
       });
             
     }
@@ -162,6 +163,20 @@ sequelize.sync().then(function() {
         
       });
     }
+  });
+  
+  
+  Apuestas.count().then(function (count){
+  if(count === 0) {   // la tabla se inicializa solo si está vacía
+     Apuestas.bulkCreate(
+      [ 
+        {nombre: 'Apuesta1',   apostado: 100 , ganado : 200, IdEstado:1},
+       
+        
+      ]
+    )
+    .then(function(){console.log('Base de datos Apuestas inicializada')});
+  }
   });
 
 });

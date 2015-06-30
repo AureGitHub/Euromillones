@@ -10,6 +10,9 @@ angular.module('quizService', [])
 			getJugadores : function() {
 				return $http.get('/api/jugadores');
 			},
+			getApuestas : function() {
+			return $http.get('/api/apuestas');
+			},
 			create : function(todoData) {
 				return $http.post('/api/quizes', todoData);
 			},

@@ -39,8 +39,34 @@ function getJugadores(res){
 };
 
 
+function getApuestas(res){
+	
+	
+	models.Apuestas.findAll({
+		include :[
+			{model:models.Tipo_Estado}
+		]
+		
+	})
+		.then(function(apuestas) {
+       if (apuestas) {
+         res.json(apuestas); 
+       }
+     }
+   ).catch(function(error){
+     console.log(error);
+     	res.send(error)
+     });
+
+};
+
+
 module.exports = function(app) {
 
+	app.get('/api/apuestas', function(req, res) {
+		
+		getApuestas(res);
+	});
 
 	app.get('/api/jugadores', function(req, res) {
 		
