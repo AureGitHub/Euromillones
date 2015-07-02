@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   	'Saldos',
     {
       saldo : {
-        type: DataTypes.INTEGER  
+        type: DataTypes.REAL  
       }
     }
   );

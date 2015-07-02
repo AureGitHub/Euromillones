@@ -1,0 +1,6 @@
+SELECT '{ id:'+CStr(id)+', usu:'''+usu+''', Nombre: '''+Nombre+''', activo: '+ CStr(activo)+', CorreoExterno: '''+ IIF(ISNULL(CorreoExterno),'',CorreoExterno) +''', PerfileId: 2 },' AS Expr1
+FROM Jugadores;
+
+
+SELECT '{ JugadoreId: ' + CStr(idUsu)+', saldo: ' +  Replace(CStr(Saldo), ',', '.')  + '},'
+FROM Saldos;
