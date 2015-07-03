@@ -1,1 +1,1 @@
-angular.module('scotchTodo', ['quizController', 'quizService','kendo.directives']);
+angular.module('scotchTodo', ['quizController', 'quizService','angularGrid']);

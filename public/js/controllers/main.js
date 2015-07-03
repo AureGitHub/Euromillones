@@ -4,7 +4,28 @@ angular.module('quizController', [])
 	.controller('mainController', ['$scope','$http','Quizes', function($scope, $http, Quizes) {
 		$scope.quiz = {pregunta: "1", respuesta: "2", tema: "3"};
 		$scope.loading = true;
+			$scope.jugadores ={};
 		
+	
+		var columnDefs = [
+        {headerName: 'Login', field: 'usu'},
+        {headerName: 'Nombre', field: 'Nombre'},
+        {headerName: 'Saldo',  field: 'Saldo.JugadoreId'},
+        {headerName: 'Perfile', field: 'Perfile.descripcion'},
+       
+    ];
+
+   
+ 
+   
+		 $scope.gridOptions = {
+        columnDefs: columnDefs,
+        rowData: null,
+        dontUseScrolls: true // because so little data, no need to use scroll bars
+    };
+		
+		 
+	/*	
 		 $scope.gridColumns =  [{
             field: "usu",
             title: "Login",
@@ -50,7 +71,7 @@ angular.module('quizController', [])
         }
         ];
 
-
+*/
 	angular.element(document).ready(function () {
 	// GET =====================================================================
 	// when landing on the page, get all todos and show them
@@ -61,7 +82,6 @@ angular.module('quizController', [])
 	Quizes.getQuizes()
 		.success(function(data) {
 		$scope.quizes = data;
-		console.log(data);
 	
 	});
 	
@@ -80,14 +100,18 @@ angular.module('quizController', [])
 	
 	Quizes.getJugadores()
 		.success(function(data) {
-		console.log(data);
 		$scope.jugadores = data;
-	
+		
+		console.log(data);
+		
+		$scope.gridOptions.rowData = data;
+		$scope.gridOptions.api.onNewRows();
+
+		
 	});
 	
 	Quizes.getApuestas()
 		.success(function(data) {
-		console.log(data);
 		$scope.apuestas = data;
 	
 	});
@@ -175,11 +199,16 @@ angular.module('quizController', [])
 				.success(function(data) {
 					$scope.loading = false;
 					$scope.jugadores = data; // assign our new list of todos
+					
+						$scope.gridOptions.rowData = data;
+						$scope.gridOptions.api.onNewRows();
 				});
 		};
 		
 			$scope.ClearGridJugadores = function(){
 				$scope.jugadores ={};
+					$scope.gridOptions.rowData = $scope.jugadores;
+						$scope.gridOptions.api.onNewRows();
 			};
 		
 		
