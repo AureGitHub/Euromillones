@@ -1,1 +1,1 @@
-angular.module('scotchTodo', ['quizController', 'quizService','angularGrid']);
+angular.module('scotchTodo', ['quizController', 'quizService','ui.grid']);

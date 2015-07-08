@@ -7,40 +7,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Optimize mobile viewport -->
 		<title>Node/Angular</title>
-		
 		<!-- SCROLLS -->
+		<!--
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-		<!-- load bootstrap -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		<!-- load bootstrap 
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">-->
 		
-		<link rel="stylesheet" type="text/css" href="js/dist/angular-grid.css">
-	    <link rel="stylesheet" type="text/css" href="js/dist/theme-fresh.css">
+		 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-animate.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+	<script src="js/core.js"></script>
+		<script src="js/controllers/main.js"></script>
+		<!-- load up our controller -->
+		<script src="js/services/quizes.js"></script>
+	
+	
 		
 		<style>
-			html 					{ overflow-y:scroll; }
-			body 					{ padding-top:50px; }
-			#todo-list 				{ margin-bottom:30px; }
-			#todo-form 	 			{ margin-bottom:50px; }
+			.grid {
+  width: 2000px;
+  height: 250px;
+}
 		</style>
 		<!-- SPELLS -->
 		<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script> -->
 	</head>
 	<!-- SET THE CONTROLLER -->
 	<body>
-		<div class="container" ng-controller="mainController">
-
-			
-			<div ag-grid="gridOptions" class="ag-fresh" style="height: 100%;"></div>
-
-			
+		<div  ng-controller="mainController">
+			<div id="grid1" ui-grid="gridOptions" class="grid" ></div>
 			
 			<input type="button" ng-click="ClearGridJugadores()">
-		<!--	<div kendo-grid k-data-source="jugadores" k-columns="gridColumns" k-selectable="true" k-on-change="selected = data"></div>
+			<!-- <div kendo-grid k-data-source="jugadores" k-columns="gridColumns" k-selectable="true" k-on-change="selected=d ata"></div>
 			<div kendo-grid k-data-source="apuestas" k-columns="gridColumnsApuestas" k-selectable="true" k-on-change="selected = data"></div>-->
 			<div id="todo-list" class="row">
 				<div class="col-sm-4 col-sm-offset-4">
 					<table border='1'>
-						<tr ng-repeat="jugador in jugadores">
+						<tr ng-repeat="jugador in gridOptions.data">
 							<td>{{ jugador.usu }}</td>
 							<td>{{ jugador.Nombre }}</td>
 							<td>{{ jugador.perfil }}</td>
@@ -55,8 +63,7 @@
 			</div>
 			<p>
 				<label>Select date:
-				<!--	<input kendo-date-picker ng-model="dateString" k-ng-model="dateObject" />-->
-				</label>
+					<!-- <input kendo-date-picker ng-model="dateString" k-ng-model="dateObject" />--></label>
 			</p>
 			<pre>dateString: {{ dateString }} dateObject: {{ dateObject | date:"EEEE, MMMM d, yyyy" }} typeof dateObject: {{ getType(dateObject)
 				}} dateObject instanceof Date: {{ isDate(dateObject) }}</pre>
@@ -67,8 +74,8 @@
 			</p>
 			<fieldset>
 				<legend>Remote data</legend>Product:
-			<!--	<select kendo-combo-box k-placeholder="'Select product'" k-data-text-field="'pregunta'" k-data-value-field="'respuesta'"-->
-				k-min-length="3" k-data-source="quizes"></select>
+				<!-- <select kendo-combo-box k-placeholder="'Select product'" k-data-text-field="'pregunta'"
+				k-data-value-field="'respuesta'"-->k-min-length="3" k-data-source="quizes"></select>
 			</fieldset>
 			<!-- HEADER AND TODO COUNT -->
 			<div class="jumbotron text-center">
@@ -106,16 +113,8 @@
 			</div>
 			<div class="text-center text-muted"></div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/angular.min.js"></script>
-		<script src="js/dist/angular-grid.js"></script>
-		<script src="js/core.js"></script>
-		<script src="js/controllers/main.js"></script>
-		<!-- load up our controller -->
-		<script src="js/services/quizes.js"></script>
-		<!-- load our todo service -->
 		
-		<!-- load our main application -->
+		
 	</body>
 
 </html>
