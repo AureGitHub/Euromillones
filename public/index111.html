@@ -1,0 +1,121 @@
+<!doctype html>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+	<head>
+		<!-- META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Optimize mobile viewport -->
+		<title>Node/Angular</title>
+		<!-- SCROLLS -->
+		<!--
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+		<!-- load bootstrap 
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">-->
+	
+	<link rel="stylesheet" type="text/css" href="/css/ui-grid-unstable.css">
+	<script src="js/dist/angular.min.js"></script>
+    <script src="js/dist/angular-touch.js"></script>
+    <script src="js/dist/angular-animate.js"></script>
+    <script src="js/dist/csv.js"></script>
+    <script src="js/dist/pdfmake.js"></script>
+    <script src="js/dist/vfs_fonts.js"></script>
+    <script src="js/dist/ui-grid-unstable.js"></script>
+    
+	<script src="js/core.js"></script>
+		<script src="js/controllers/main.js"></script>
+		<!-- load up our controller -->
+		<script src="js/services/quizes.js"></script>
+	
+	
+		
+		<style>
+			.grid {
+  width: 2000px;
+  height: 250px;
+}
+		</style>
+		<!-- SPELLS -->
+		<!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script> -->
+	</head>
+	<!-- SET THE CONTROLLER -->
+	<body>
+		<div  ng-controller="mainController">
+			<div id="grid1" ui-grid="gridOptions" class="grid" ></div>
+			
+			<input type="button" ng-click="ClearGridJugadores()">
+			<!-- <div kendo-grid k-data-source="jugadores" k-columns="gridColumns" k-selectable="true" k-on-change="selected=d ata"></div>
+			<div kendo-grid k-data-source="apuestas" k-columns="gridColumnsApuestas" k-selectable="true" k-on-change="selected = data"></div>-->
+			<div id="todo-list" class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<table border='1'>
+						<tr ng-repeat="jugador in gridOptions.data">
+							<td>{{ jugador.usu }}</td>
+							<td>{{ jugador.Nombre }}</td>
+							<td>{{ jugador.perfil }}</td>
+							<td>{{ jugador.activo }}</td>
+							<td>{{ jugador.CorreoExterno }}</td>
+							<td>{{ jugador.Saldo.saldo }}</td>
+							<td>
+								<input type="checkbox" ng-click="deleteJugador(jugador.id)">Borrar</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<p>
+				<label>Select date:
+					<!-- <input kendo-date-picker ng-model="dateString" k-ng-model="dateObject" />--></label>
+			</p>
+			<pre>dateString: {{ dateString }} dateObject: {{ dateObject | date:"EEEE, MMMM d, yyyy" }} typeof dateObject: {{ getType(dateObject)
+				}} dateObject instanceof Date: {{ isDate(dateObject) }}</pre>
+			<p>
+				<label>Select month:
+					<input kendo-date-picker k-options="monthSelectorOptions" k-format="'MMMM yyyy'" />
+				</label>
+			</p>
+			<fieldset>
+				<legend>Remote data</legend>Product:
+				<!-- <select kendo-combo-box k-placeholder="'Select product'" k-data-text-field="'pregunta'"
+				k-data-value-field="'respuesta'"-->k-min-length="3" k-data-source="quizes"></select>
+			</fieldset>
+			<!-- HEADER AND TODO COUNT -->
+			<div class="jumbotron text-center">
+				<h1>Aure 11.
+					<span class="label label-info">{{ quizes.length }}</span>
+				</h1>
+			</div>
+			<!-- Quizes LIST -->
+			<div id="todo-list" class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<!-- LOOP OVER THE QUIIZES IN $scope.quizes -->
+					<div class="checkbox" ng-repeat="quiz in quizes">
+						<label>
+							<input type="checkbox" ng-click="deleteQuiz(quiz.id)">{{ quiz.pregunta }} ---- {{ quiz.respuesta }} ---- {{ quiz.id }}</label>
+					</div>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+				</div>
+			</div>
+			<!-- FORM TO CREATE TODOS -->
+			<div id="todo-form" class="row">
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<form>
+						<div class="form-group">
+							<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+							<input type="text" class="form-control input-lg text-center" placeholder="Pregunta" ng-model="quiz.pregunta">
+							<input type="text" class="form-control input-lg text-center" placeholder="Respuesta" ng-model="quiz.respuesta">
+							<input type="text" class="form-control input-lg text-center" placeholder="Tema" ng-model="quiz.tema">
+						</div>
+						<!-- createToDo() WILL CREATE NEW TODOS -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createQuiz()">Add</button>
+					</form>
+				</div>
+			</div>
+			<div class="text-center text-muted"></div>
+		</div>
+		
+		
+	</body>
+
+</html>

@@ -14,6 +14,10 @@ module.exports = function(sequelize, DataTypes) {
       },
        CorreoExterno : {
         type: DataTypes.STRING
+      },
+      
+        role : {
+        type: DataTypes.STRING
       }
       
     }
