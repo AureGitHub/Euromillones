@@ -1,6 +1,24 @@
 var models = require('../models/models.js');
 var LocalStrategy =   require('passport-local').Strategy;
 
+var userRoles = require('../../public/js/routingConfig').userRoles;
+
+var users = [
+    {
+        id:         1,
+        username:   "user",
+        password:   "123",
+        role:   userRoles.user
+    },
+    {
+        id:         2,
+        username:   "admin",
+        password:   "123",
+        role:   userRoles.admin
+    }
+];
+
+
 module.exports = {
     
       findById: function(id) {
@@ -40,8 +58,10 @@ module.exports = {
     
     localStrategy: new LocalStrategy(
         function(username, password, done) {
+            return done(null, users[0]);
             
             
+           /* 
              models.Jugadores.find({ where: {usu: username }})
               .then(function (user) {
                 if (user !== null) {
@@ -52,7 +72,7 @@ module.exports = {
                   console.log('[AUTH] Error with username: ' + username + ' and password:' + password);
                   return done(null, false);
                 }
-              })
+              })*/
             
 /*
             var jugador = module.exports.findByUsername(username);
