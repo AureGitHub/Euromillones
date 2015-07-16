@@ -143,7 +143,7 @@ sequelize.sync().then(function () {
             Jugadores.bulkCreate(
               [
 
-                { id: 0, usu: 'jdesande', Nombre: 'Jose Aurelio de Sande Villarroel', activo: 1, CorreoExterno: 'aure.desande@gmail.com', role: 2 },
+                { id: 0, usu: 'jdesande', Nombre: 'Jose Aurelio de Sande Villarroel', activo: 1, CorreoExterno: 'aure.desande@gmail.com', role: 4 },
                 { id: 1, usu: 'aalonso', Nombre: 'Alberto Alonso Alonso', activo: 1, CorreoExterno: '', role: 2 },
                 { id: 2, usu: 'aaranzue', Nombre: 'Alberto Aranzueque González', activo: 0, CorreoExterno: '', role: 2 },
                 { id: 3, usu: 'aencinas', Nombre: 'Alberto Encinas Escobar', activo: 1, CorreoExterno: '', role: 2 },
